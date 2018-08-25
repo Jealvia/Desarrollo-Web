@@ -1,0 +1,42 @@
+Crear proyecto con virtual enviroment
+mkdir djangogirls
+cd djangogirls
+python3 -m venv myvenv #myvenv es el nombre del entorno virtual
+source myvenv/bin/activate #myvenv es el nombre del entorno virtual
+se mueve a la carpeta del proyecto
+python -m pip install django
+#para desactivar deactivate
+
+pip install psycopg2 #instalar postgres
+
+Crear proyecto
+django-admin.py startproject nombre
+django-admin.py startapp nombre
+django-admin.py create superuser
+
+Migraciones
+manage.py makemigrations    #crea migraciones cuando crea el modelo
+manage.py migrate           #cuando se hacen cambios en el modelo los agrega
+manage.py runserver         #ejecuta el servidor
+
+Agregar motor de base de datos
+abrir el archiv settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.NOMBRE DEL MOTOR',
+        'NAME':'test',
+        'USER':'postgres',
+        'PASSWORD': ''
+        'HOST':'localhost'
+        'PORT':5432
+    }
+}
+
+base taller; usuario taller; contra lol;
+
+Relaciones entre tablas
+de uno a muchos se usa ForeignKkey
+de uno a uno se usa OneToOneField
+de muchos a muchos se usa ManyToManyField:
+    aqui se crea la clase modelo que va a contener la relacion 
+    

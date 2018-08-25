@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %} {% if usuarios %}
+
+
+<div class="container">
+    <h2>Usuarios</h2>
+    <div class="row">
+        {% for user in usuarios %}
+        <div class="col">
+            <div>
+                <img src="{% static 'images/img_avatar3.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle mx-auto d-block" style="width:60px;">
+                <h2 class="text-center"> {{user.nombre_completo }} </h2>
+            </div>
+        </div>
+        <div class="col">
+            <h2>Servicios Registrados</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Direccion</th>
+                        <th>Fecha</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                {% for servicio in user.id_servicio.all %}
+                <tbody>
+
+                    <tr>
+                        <td> {{servicio.nombre}} </td>
+                        <td>{{user.ciudad}}</td>
+                        <td> {{servicio.fecha}} </td>
+                        <td>
+                            <a href="{% url 'crear_servicio' pk=servicio.pk %}">Editar</a>,
+                            <a href="{% url 'eliminar_servicio' pk=servicio.pk %}">Eliminar</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+                {% endfor %}
+            </table>
+            <a  class="btn btn-info" href="{% url 'nuevo_servicio' %}" role="button">Crear-{{user.pk}}</a>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% else %}
+<h1>No hay valores</h1>
+{% endif %} {% endblock content %}

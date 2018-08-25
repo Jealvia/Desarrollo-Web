@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load staticfiles %} 
+{% block content %}
+<div class="container">
+    <h2>Servicio</h2>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'editar_usuarios' user=usuario.id serv=servicio.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="text" class="bold">Usuario: </label>
+                    <label for="text"> {{usuario.nombre_completo}} </label>    
+                </div> 
+                <div class="form-group">
+                    <label for="text" class="bold">Nombre del Servicio: </label>
+                    <label for="text"> {{servicio.nombre}} </label>    
+                </div>
+                <div class="form-group">
+                    <label for="text" class="bold">Fecha de Registro: </label>
+                    <label for="text"> {{servicio.fecha}} </label>    
+                </div>
+                <div class="form-group">
+                    <label for="text" class="bold">Dirección: </label>
+                    <textarea class="form-control" name="direccion" id="" cols="40" rows="5"> {{ servicio.direccion }} </textarea>    
+                </div>     
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+            <form action="{% url 'eliminar_servicio' user=usuario.id serv=servicio.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+{% endblock content %}

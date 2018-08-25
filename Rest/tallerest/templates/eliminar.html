@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% load staticfiles %} 
+{% block content %}
+
+{% load rest_framework %}
+
+<h1>Servicio </h1>
+<form action="{% url 'eliminar_servicio' pk=servicio.pk %}" method="POST">
+    {% csrf_token %} {% render_form serializer %}
+    <input type="submit" value="Eliminar">
+</form>
+
+
+
+
+
+
+{% endblock content %}

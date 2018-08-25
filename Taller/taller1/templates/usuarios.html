@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %} {% if usuario %} 
+
+<div class="container">
+    <h2>Usuarios</h2>
+    <div class="row">
+        
+        {% for user in usuario %}
+        <div class="col">
+            <div>
+                <h2> {{user.nombre }} {{ user.apellido }} </h2>
+                <img src="{% static 'images/img_avatar3.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle mx-auto d-block" style="width:60px;">
+            </div>
+            <div>
+                <h4>Servicios registrados</h4>
+                <ul>
+                    {% for serv in user.idUsuario.all %}
+                    <li> {{ serv.nombre }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+ {% else %}
+<h1>No hay valores</h1>
+{% endif %} {% endblock content %}

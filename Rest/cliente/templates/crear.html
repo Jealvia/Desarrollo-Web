@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% load staticfiles %}  {% block content %}
+
+<div class="container">
+    <h2>Servicio</h2>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'crear_servicio' user=usuario.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="text" class="bold">Usuario: </label>
+                    <label for="text"> {{usuario.nombre_completo}} </label>    
+                </div> 
+                <div class="form-group">
+                    <label for="text" class="bold">Nombre del Servicio: </label>
+                    <select name="name" id="">
+                        <option  value="" selected>Servicios</option>
+                        {% for i in servicios%}
+                            <option value="{{i.nombre}}">{{i.nombre}}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group">
+                    <label for="text" class="bold">Fecha de Registro: </label>
+                    <input type="date" name="fecha_registro">   
+                </div>
+                <div class="form-group">
+                    <label for="text" class="bold">Dirección: </label>
+                    <textarea class="form-control" name="direccion" id="" cols="40" rows="5"></textarea>    
+                </div>     
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a class="btn btn-danger" href="{% url 'listar_usuarios' pk=usuario.id %}">Regresar</a>
+                </div>
+            </form>
+        </div>
+      </div>
+      
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

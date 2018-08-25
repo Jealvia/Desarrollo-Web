@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %} {% if usuario %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Servicios:</h2>
+            <form class="form-group" action="{% url 'mostrar' %}" method="POST">
+                {% csrf_token %}
+                <select class="form-control" name="servicio">
+                    <option value="CNEL">CNEL</option>
+                    <option value="CLARO">CLARO</option>
+                    <option value="MOVISTAR">MOVISTAR</option>
+                    <option value="EMAPAG">EMAPAG</option>
+                </select>
+                <h2>MES:</h2>
+                <select class="form-control" name="mes">
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">BUSCAR</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="form-group" >
+                <a class="btn btn-danger" href="{% url 'mostrar' %}">RELOAD</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre completo</th>
+                <th>Servicio</th>
+                <th>Ciudad</th>
+                <th>Fecha</th>
+                <th>Total factura</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in usuario %}
+            <tr>
+                <td>{{user.nombre_completo}}</td>
+                <td> {{user.id_servicio.nombre}} </td>
+                <td>{{user.ciudad}}</td>
+                <td> {{user.id_factura.fecha}} </td>
+                <td> {{user.id_factura.total_factura}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<h1>No hay valores</h1>
+{% endif %} {% endblock content %}
